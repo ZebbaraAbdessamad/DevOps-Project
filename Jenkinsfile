@@ -42,12 +42,14 @@ pipeline {
         }
 
         stage('Update kubeconfig') {
-            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS_Credentials']]) {
-                steps {
-                    // Update the kubeconfig to include your EKS cluster
-                    sh 'aws eks update-kubeconfig --name my-eks-cluster'
-                }
-            }
+           steps {
+              script {
+                  withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS_Credentials']]) {
+                      // Update the kubeconfig to include your EKS cluster
+                      sh 'aws eks update-kubeconfig --name my-eks-cluster' 
+                  }
+              }
+           }
         }
 
         stage('Deploy to Amazon EKS') {
