@@ -42,7 +42,7 @@ pipeline {
           }
         }
 
-        stage('Update kubeconfig') {
+        stage('Deploy to Amazon EKS') {
            steps {
               script {
                   withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS_Credentials']]) {
@@ -51,20 +51,11 @@ pipeline {
                        export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
                        export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
                        aws eks update-kubeconfig --name my-eks-cluster
+                       kubectl apply -f deployment-k8s.yaml
                     '''
                   }
               }
            }
-        }
-
-        stage('Deploy to Amazon EKS') {
-            steps {
-                  sh '''
-                       export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-                       export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-                       kubectl apply -f deployment-k8s.yaml
-                    '''
-            }
         }
     }
 
