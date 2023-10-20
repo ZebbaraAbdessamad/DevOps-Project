@@ -59,7 +59,11 @@ pipeline {
 
         stage('Deploy to Amazon EKS') {
             steps {
-                sh 'kubectl apply -f deployment-k8s.yaml'
+                  sh '''
+                       export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+                       export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+                       kubectl apply -f deployment-k8s.yaml
+                    '''
             }
         }
     }
