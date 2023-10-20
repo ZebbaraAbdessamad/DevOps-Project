@@ -13,6 +13,15 @@ spec:
       labels:
         app: spring-boot-k8s
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                - key: env
+                  operator: In
+                  values:
+                    - dev
       containers:
         - name: spring-boot-k8s-container
           image: abdessamadzebbara/spring-boot-k8s:latest # Replace with your Docker image name and tag
@@ -33,4 +42,5 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8089
+      nodePort: 31786  # Specify the NodePort you want to use
   type: NodePort # Exposes the service on a random port on each Minikube node
