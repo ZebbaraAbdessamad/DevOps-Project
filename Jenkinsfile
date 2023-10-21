@@ -14,6 +14,23 @@ pipeline {
       
     stages {
 
+        stage('Set Up Infrastructure with Terraform') {
+            steps {
+                script {
+                    // Navigate to the Terraform directory
+                    dir('Terraform') {
+                        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS_Credentials']]) {
+                            sh "export TF_VAR_aws_access_key=$AWS_ACCESS_KEY_ID"
+                            sh "export TF_VAR_aws_secret_key=$AWS_SECRET_ACCESS_KEY"
+                            sh "terraform init"
+                            sh "terraform plan --auto-approve"
+                            sh "terraform apply --auto-approve"
+                        }
+                    }
+                }
+            }
+        }
+
         stage('Build App') {
             steps {
                 // Build your Spring Boot application
