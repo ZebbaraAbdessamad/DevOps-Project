@@ -17,19 +17,18 @@ pipeline {
         stage('Set Up Infrastructure with Terraform') {
             steps {
                 script {
-                  // Navigate to the Terraform directory
-                      script {
-                          withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS_Credentials']]) {
-                          sh '''
-                              export TF_VAR_aws_access_key=$AWS_ACCESS_KEY_ID
-                              export TF_VAR_aws_secret_key=$AWS_SECRET_ACCESS_KEY
-                              cd terraform && terraform init
-                              cd terraform && terraform plan --auto-approve
-                              cd terraform && terraform apply --auto-approve
-                          '''
-
-                          }
-                      }
+                    // Change to the Terraform directory
+                    dir('terraform') {
+                        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS_Credentials']]) {
+                            sh '''
+                                export TF_VAR_aws_access_key=$AWS_ACCESS_KEY_ID
+                                export TF_VAR_aws_secret_key=$AWS_SECRET_ACCESS_KEY
+                                terraform init
+                                terraform plan --auto-approve
+                                terraform apply --auto-approve
+                            '''
+                        }
+                    }
                 }
             }
         }
