@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                     // Navigate to the Terraform directory
-                    dir('Terraform') {
+                    dir('terraform') {
                         script {
                             withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS_Credentials']]) {
                                 sh '''
