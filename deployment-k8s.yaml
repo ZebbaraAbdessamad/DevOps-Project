@@ -15,13 +15,14 @@ spec:
     spec:
       affinity:
         nodeAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-            nodeSelectorTerms:
-              - matchExpressions:
-                - key: env
-                  operator: In
-                  values:
-                    - dev
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 1
+              preference:
+                matchExpressions:
+                  - key: env
+                    operator: In
+                    values:
+                      - dev
       containers:
         - name: spring-boot-k8s-container
           image: abdessamadzebbara/spring-boot-k8s:latest # Replace with your Docker image name and tag
