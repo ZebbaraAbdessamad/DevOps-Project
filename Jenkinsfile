@@ -20,14 +20,14 @@ pipeline {
                   // Navigate to the Terraform directory
                       script {
                           withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'AWS_Credentials']]) {
-                              sh '''
-                                  cd terraform
-                                  export TF_VAR_aws_access_key=$AWS_ACCESS_KEY_ID
-                                  export TF_VAR_aws_secret_key=$AWS_SECRET_ACCESS_KEY
-                                  terraform init
-                                  terraform plan -out=tfplan --auto-approve
-                                  terraform apply tfplan --auto-approve
-                              '''
+                          sh '''
+                              export TF_VAR_aws_access_key=$AWS_ACCESS_KEY_ID
+                              export TF_VAR_aws_secret_key=$AWS_SECRET_ACCESS_KEY
+                              terraform -chdir=terraform init
+                              terraform -chdir=terraform plan --auto-approve
+                              terraform -chdir=terraform apply --auto-approve
+                          '''
+
                           }
                       }
                 }
