@@ -23,9 +23,9 @@ pipeline {
                           sh '''
                               export TF_VAR_aws_access_key=$AWS_ACCESS_KEY_ID
                               export TF_VAR_aws_secret_key=$AWS_SECRET_ACCESS_KEY
-                              terraform -chdir=terraform init
-                              terraform -chdir=terraform plan --auto-approve
-                              terraform -chdir=terraform apply --auto-approve
+                              cd terraform && terraform init
+                              cd terraform && terraform plan --auto-approve
+                              cd terraform && terraform apply --auto-approve
                           '''
 
                           }
