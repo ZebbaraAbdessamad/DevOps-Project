@@ -19,6 +19,14 @@ resource "aws_security_group" "my_security_group" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  #kubernetes service ( node port)
+  ingress {
+    from_port   = 31786
+    to_port     = 31786
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   #hhtps
   ingress {
     from_port   = 443
