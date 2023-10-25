@@ -47,7 +47,7 @@ Before you begin, ensure you have the following tools and services set up:
 2. Change to the project directory:
 
    ```bash
-   cd devOps-project
+   cd DevOps-Project
    ````
 
 
