@@ -14,7 +14,6 @@
 - [Jenkins Configuration](#jenkins-configuration)
 - [Pipeline Stages](#pipeline-stages)
 - [Verification](#verification)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Prerequisites
@@ -112,7 +111,6 @@ Ensure that the following Jenkins plugins are installed:
 * **Multibranch Scan Webhook Trigger Plugin**: For triggering pipeline builds on GitHub webhook events.
 
 
----
 Configure the following credentials in Jenkins:
 
 
