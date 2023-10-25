@@ -2,7 +2,7 @@
 
 <br/>
 
-![Architecture](images/eks-architecture.jpg)
+![Architecture](images/architecture.jpg)
 
 ## Table of Contents
 
