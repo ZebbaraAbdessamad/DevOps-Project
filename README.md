@@ -2,7 +2,7 @@
 
 <br/>
 
-![Architecture](images/eks-architecture.jpg.png)
+![Architecture](images/eks-architecture.jpg)
 
 ## Table of Contents
 
@@ -181,7 +181,7 @@ Here's how you can do it:
 
 The output will be like this:
 
-![architecture](images/services.png)
+![architecture](images/node-and-service.png)
 
 
 Copy the ip address and paste it into your browser to access the deployed containerized application
