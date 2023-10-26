@@ -157,7 +157,7 @@ The Jenkins pipeline includes the following stages:
 * **Deploy to Amazon EKS:** Deploy the application to the Amazon EKS cluster.
 
 
-![stages](images/jenkins-stages.png)
+![stages](images/jenkins-stages.PNG)
 
 ### Verification
 
